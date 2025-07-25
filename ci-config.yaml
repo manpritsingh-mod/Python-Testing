@@ -1,0 +1,26 @@
+project_language: python
+project_name: python-calculator-test
+project_description: Python Calculator Test Project for Jenkins Pipeline
+
+# Build configuration
+build_tool: pip
+test_tool: pytest
+lint_tool: pylint
+
+# Stage configuration
+stages:
+  lint: true
+  unittest: true
+  build: true
+
+# Tool configuration
+tool_for_unit_testing:
+  python: pytest
+
+tool_for_lint_testing:
+  python: pylint
+
+# Pipeline settings
+fail_on_lint_violations: false
+fail_on_test_failures: false
+generate_reports: true
