@@ -1,26 +1,19 @@
-project_language: python
-project_name: python-calculator-test
-project_description: Python Calculator Test Project for Jenkins Pipeline
+# Basic CI/CD Configuration File
+project_language: "python"
+runUnitTests: true
+runLintTests: true
 
-# Build configuration
-build_tool: pip
-test_tool: pytest
-lint_tool: pylint
-
-# Stage configuration
-stages:
-  lint: true
-  unittest: true
-  build: true
-
-# Tool configuration
 tool_for_unit_testing:
   python: pytest
 
 tool_for_lint_testing:
   python: pylint
 
-# Pipeline settings
-fail_on_lint_violations: false
-fail_on_test_failures: false
-generate_reports: true
+# Basic Notification Configuration
+notifications:
+  email:
+    recipients: 
+      - "smanprit022@gmail.com"
+  slack:
+    enabled: false           # Set to true when you get Slack access
+    channel: "#builds"
