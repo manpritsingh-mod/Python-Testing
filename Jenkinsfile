@@ -16,7 +16,10 @@ pipeline {
         RUN_UNIT_TESTS = 'true'
         RUN_LINT_TESTS = 'true'
         RUN_FUNCTIONAL_TESTS = 'true'
-    }
+        RUN_SMOKE_TESTS = 'true'
+        RUN_SANITY_TESTS = 'true'
+        RUN_REGRESSION_TESTS = 'true'
+        
     
     stages {
         stage('Setup and Execution') {

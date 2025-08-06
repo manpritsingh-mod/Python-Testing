@@ -2,12 +2,20 @@
 project_language: "python"
 runUnitTests: true
 runLintTests: true
+runFunctionalTests: true
 
 tool_for_unit_testing:
   python: pytest
 
 tool_for_lint_testing:
   python: pylint
+
+# Functional Testing Configuration
+functional_tests:
+  smoke_tests: true
+  sanity_tests: true
+  regression_tests: true
+  test_tool: pytest
 
 # Basic Notification Configuration
 notifications:
