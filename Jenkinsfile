@@ -7,19 +7,15 @@ pipeline {
         maven 'Maven 3.8.1'
         gradle 'Gradle 7.5'
         allure 'Allure-2.34.1'
-        // python 'Python-3.11'
     }
     
     environment {
-        PROJECT_LANGUAGE = 'python'
-        BUILD_TOOL = 'pip'
-        RUN_UNIT_TESTS = 'true'
-        RUN_LINT_TESTS = 'true'
-        RUN_FUNCTIONAL_TESTS = 'true'
-        RUN_SMOKE_TESTS = 'true'
-        RUN_SANITY_TESTS = 'true'
-        RUN_REGRESSION_TESTS = 'true'
-        
+        PROJECT_LANGUAGE = ''
+        BUILD_TOOL = ''
+        RUN_UNIT_TESTS = ''
+        RUN_LINT_TESTS = ''
+        RUN_FUNCTIONAL_TESTS = ''
+    }
     
     stages {
         stage('Setup and Execution') {
@@ -38,7 +34,6 @@ pipeline {
                         
                         // Call appropriate template based on the project language
                         logger.info("Calling template for: ${config.project_language}")
-                        
                         switch (config.project_language) {
                             case 'java-maven':
                                 logger.info("Executing Java Maven template")
@@ -57,6 +52,7 @@ pipeline {
                         }
                         
                         logger.info("Project template execution completed")
+                        
                     } else {
                         error("PROJECT_CONFIG is empty or missing")
                     }
@@ -74,9 +70,7 @@ pipeline {
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def config = [
                     notifications: [
-                        email: [
-                            recipients: ["smanprit022@gmail.com"]
-                        ]
+                        email: [recipients: ["smanprit022@gmail.com"]]
                     ]
                 ]
                 
@@ -84,21 +78,23 @@ pipeline {
                 logger.info("Notification sent successfully")
             }
         }
+        
         success {
             script {
                 logger.info("BUILD SUCCESSFUL!")
             }
         }
+        
         failure {
             script {
                 logger.error("BUILD FAILED!")
             }
         }
+        
         unstable {
             script {
                 logger.warning("BUILD UNSTABLE!")
             }
         }
     }
-}
 }
